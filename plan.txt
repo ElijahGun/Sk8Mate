@@ -1,0 +1,14 @@
+TODO:
+
+Make a step by step plan to execute
+
+> Make bootstrap card for each skatepark
+> Make skateparks to be links to a showpage that opens details page for every park
+
+=====implement CRUD ====
+
+> Read -- homepage
+> Read -- details page
+> Create -- New Skatepark page
+> Update -- Edit park page
+> Delete -- Delete park button
