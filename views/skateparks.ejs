@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head.ejs')  %> 
+    <title>>Sk8Mate<</title>
+</head>
+<body>
+
+    <%- include('./partials/navbar.ejs')  %> 
+
+    <h1>All SkateParks</h1>
+
+<h2>SkateParks</h2>
+<% for (park of skateparks) {%>
+    
+    <div class="card" style="width: 18rem;">
+        <img src="<%= park.imgUrl %> " class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title"><%= park.name  %> </h5>
+          <p class="card-text"><%= park.location  %> </p>
+          <a href="/skateparks/<%= park._id %> " class="btn btn-primary">Details</a>
+        </div>
+      </div>
+<% } %>  
+
+<%- include('./partials/footer.ejs')  %> 
+</body>
+</html>

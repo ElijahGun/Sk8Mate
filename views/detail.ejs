@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head.ejs') %>
+    <title><%= skatepark.name %> </title>
+  </head>
+  <body>
+
+    <%- include('./partials/navbar.ejs')  %> 
+
+    <main class="container">
+        <h1><%= skatepark.name  %> </h1>
+        <h2><%= skatepark.location %> </h2>
+        <img src="<%= skatepark.imgUrl %>" alt="">
+    </main>
+
+    <form action="/skatparks/<%= skatepark._id %>/edit">
+        <button class="btn btn-info">Edit Park</button>
+    </form>
+
+    <form action="/skateparks/<%= skatepark._id %>?_method=DELETE" method="POST">
+        <label for="deletePark">Delete Park</label>
+        <button class="btn btn-danger" id="deletePark">Delete Park</button>
+    </form>
+
+    <%- include('./partials/footer.ejs') %>
+  </body>
+</html>

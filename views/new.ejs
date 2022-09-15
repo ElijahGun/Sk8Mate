@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head.ejs')  %> 
+    <title>Add New Park</title>
+</head>
+<body>
+    <%- include('./partials/navbar.ejs')  %> 
+    <h1>new park</h1>
+
+    <!-- Form to add new park -->
+    <div class="container">
+        <form action="/skateparks/new" class="row g-3 needs-validation" novalidate method="POST">
+            <div class="d-flex flex-column mb-3">
+                <div class="col-md-4">
+                    <label for="validationCustom01" class="form-label">Park Name</label>
+                    <input type="text" class="form-control" id="validationCustom01" placeholder="Sk8Heaven" required name="name">
+                    <div class="valid-feedback">
+                      Looks good!
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <label for="validationCustom02" class="form-label">Location</label>
+                    <input name="location" type="text" class="form-control" id="validationCustom02" placeholder="Los Angeles, CA" required>
+                    <div class="valid-feedback">
+                      Looks good!
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <label for="validationCustomUsername" class="form-label">Cost</label>
+                    <div class="input-group has-validation">
+                      <span class="input-group-text" id="inputGroupPrepend">$</span>
+                      <input name="price" type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+                      <div class="invalid-feedback">
+                        Please provide a price.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                      <label for="validationCustom02" class="form-label">Image Url:</label>
+                      <input name="imgUrl" type="text" class="form-control" id="validationCustom02" placeholder="Image URL Here" required>
+                      <div class="valid-feedback">
+                        Looks good!
+                      </div>
+                    </div>
+                  
+                  <div class="col-12">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                      <label class="form-check-label" for="invalidCheck">
+                        Agree to terms and conditions
+                      </label>
+                      <div class="invalid-feedback">
+                        You must agree before submitting.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <button class="btn btn-primary" type="submit">Add Park</button>
+                  </div>
+                </form>
+            </div>
+            
+    </div>
+
+    <!-- script required for client side validation  -->
+    <%- include('../public/javascripts/validateform.ejs')  %> 
+    <%- include('./partials/footer.ejs')  %> 
+</body>
+</html>

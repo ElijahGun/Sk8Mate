@@ -3,8 +3,9 @@ const { Schema } = mongoose;
 
 const SkateParkSchema = new Schema({
     name: String,
-    Location: String,
-    Price: Number
+    location: String,
+    Price: Number,
+    imgUrl: String
 })
 
 module.exports = mongoose.model('SkatePark', SkateParkSchema, 'skateparks');

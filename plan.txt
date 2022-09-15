@@ -2,6 +2,15 @@ TODO:
 
 Make a step by step plan to execute
 
+1. CRUD functionality
+    a. details page
+
+
+
+
+
+
+
 > Make bootstrap card for each skatepark
 > Make skateparks to be links to a showpage that opens details page for every park
 
