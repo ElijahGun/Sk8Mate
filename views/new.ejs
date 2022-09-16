@@ -30,9 +30,9 @@
                     <label for="validationCustomUsername" class="form-label">Cost</label>
                     <div class="input-group has-validation">
                       <span class="input-group-text" id="inputGroupPrepend">$</span>
-                      <input name="price" type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+                      <input min="0" name="price" type="number" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
                       <div class="invalid-feedback">
-                        Please provide a price.
+                        Price must be 0 or a positive number.
                       </div>
                     </div>
                   </div>

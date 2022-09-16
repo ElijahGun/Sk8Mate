@@ -31,7 +31,7 @@
                         <label for="validationCustomUsername" class="form-label">Cost</label>
                         <div class="input-group has-validation">
                           <span class="input-group-text" id="inputGroupPrepend">$</span>
-                          <input value="<%= skatepark.price %> " name="price" type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+                          <input value="<%= skatepark.price %> " name="price" type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required min="0">
                           <div class="invalid-feedback">
                             Please provide a price.
                           </div>
