@@ -55,8 +55,19 @@ app.post('/skateparks/new', async (req, res, next) => {
     res.redirect('/skateparks');
 })
 
-//skatepark edit page
-//////TOODO: MAKE EDIT ROUTE FOR SKATEPARK
+//GET skatepark edit page
+app.get('/skateparks/:id/edit', async (req, res, next) => {
+  const { id } = req.params;
+  const skatepark = await skatePark.findById(id);
+  res.render('edit.ejs', { skatepark })
+})
+
+app.post('/skateparks/:id/edit', async (req, res) => {
+  const { id } = req.params;
+  const { name, location, price, imgUrl, } = req.body;
+  await skatePark.findByIdAndUpdate( id, {name, location, imgUrl, price})
+  res.redirect(`/skateparks/${id}`)
+})
 
 //skatepark detail page
 app.get('/skateparks/:id', async (req, res) => {

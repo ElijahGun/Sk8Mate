@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 const SkateParkSchema = new Schema({
     name: String,
     location: String,
-    Price: Number,
+    price: Number,
     imgUrl: String
 })
 
