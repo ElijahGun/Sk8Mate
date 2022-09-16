@@ -11,7 +11,7 @@
     <h2>Edit- <%= skatepark.name  %> -Skatepark</h2>
         <!-- Form to add edit park -->
         <div class="container">
-            <form action="/skateparks/<%= skatepark._id %>/edit" class="row g-3 needs-validation" novalidate method="POST">
+            <form action="/skateparks/<%= skatepark._id %>/edit?_method=PATCH" class="row g-3 needs-validation" novalidate method="POST">
                 <div class="d-flex flex-column mb-3">
                     <div class="col-md-4">
                         <label for="validationCustom01" class="form-label">Park Name</label>

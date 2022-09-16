@@ -1,11 +1,13 @@
 const express = require("express");
 const appConfig = require("./config.js");
-const skatePark = require("./models/skatepark"); //mongoose skatepark model
 const mongoose = require("mongoose");
 const path = require('path');
 const methodOverride = require('method-override'); // allows for overide of default form method
 
 const app = express();
+
+//import route files
+const skateparkRoute = require('./routes/skateparkRoutes');
 
 app.set("view engine", "ejs");
 //=================Connect Mongoose / MongoDB ======================
@@ -30,59 +32,13 @@ app.use(express.urlencoded({ extended: true })) // for parsing application/x-www
 app.use(methodOverride('_method')) // overide default form submission ex: post request to delete
 //===================ROUTES========================================
 
-// Index page
+// Index / home page
 app.get("/", (req, res) => {
   res.render('./index.ejs');
 });
 
-//all skateparks page
-app.get("/skateparks", async (req, res) => {
-  const skateparks = await skatePark.find({});
-  res.render("./skateparks.ejs", { skateparks });
-});
+app.use('/skateparks', skateparkRoute); //skatepark routes
 
-//new skatepark page
-app.get('/skateparks/new', (req, res) => {
-    res.render('./new.ejs');
-})
-
-//POST / add new skatepark
-app.post('/skateparks/new', async (req, res, next) => {
-    const { name, location, price, imgUrl } = req.body;
-    const sk8park = new skatePark({name,location,price,imgUrl});
-    await sk8park.save()
-    console.log('success')
-    res.redirect('/skateparks');
-})
-
-//GET skatepark edit page
-app.get('/skateparks/:id/edit', async (req, res, next) => {
-  const { id } = req.params;
-  const skatepark = await skatePark.findById(id);
-  res.render('edit.ejs', { skatepark })
-})
-
-app.post('/skateparks/:id/edit', async (req, res) => {
-  const { id } = req.params;
-  const { name, location, price, imgUrl, } = req.body;
-  await skatePark.findByIdAndUpdate( id, {name, location, imgUrl, price})
-  res.redirect(`/skateparks/${id}`)
-})
-
-//skatepark detail page
-app.get('/skateparks/:id', async (req, res) => {
-    const { id } = req.params;
-    const skatepark = await skatePark.findById(id);
-    res.render('detail.ejs', { skatepark });
-})
-
-//skatepark delete route
-app.delete('/skateparks/:id', async (req, res) => {
-    const { id } = req.params;
-    await skatePark.findByIdAndDelete(id);
-    console.log('WARNING -DELETED!')
-    res.redirect('/skateparks')
-})
 
 app.listen(appConfig.port, () => {
   console.log(`listening on port`);
