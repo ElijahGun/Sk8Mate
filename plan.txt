@@ -2,7 +2,7 @@ TODO:
 
 
 ERROR HANDLING TODO:
-> Joi Schema validations
+> Joi Schema validations >> NEEDS TO BE ADDED TO EDIT ROUTE// SEE SPLITTING VIDEO???
 
 Make a step by step plan to execute
 
@@ -10,10 +10,8 @@ Make a step by step plan to execute
 
 THINGS MY APP NEEDS:
 
-> ERROR HANDLING
-    - error handle function to wrap routes
-
 > Add Review functionality
+    >>review mongo / mongoose model... how will it be implemented?? relationships with skatepark?? by ID
 
 > STYLES CLEANUP
 
