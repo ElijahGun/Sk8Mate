@@ -3,6 +3,7 @@ const appConfig = require("./config.js");
 const mongoose = require("mongoose");
 const path = require('path');
 const methodOverride = require('method-override'); // allows for overide of default form method
+const ExpressError = require('./utils/ExpressError');
 
 const app = express();
 
@@ -25,7 +26,6 @@ db.once("open", function () {
 
 //================== MIDDLE WARE ==================================
 
-
 app.use(express.static(path.join(__dirname, 'public'))) // make sure public folder accessible even if accessed outside
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
@@ -39,6 +39,16 @@ app.get("/", (req, res) => {
 
 app.use('/skateparks', skateparkRoute); //skatepark routes
 
+app.all('*', (req, res, next) => {
+  throw new ExpressError('Page not found', 404)
+})
+
+app.use((err, req, res, next) => {
+  console.log(err)
+  const { message = 'Something went wrong', statusCode = 500 } = err;
+  res.status(statusCode)
+  res.render('./error.ejs');
+})
 
 app.listen(appConfig.port, () => {
   console.log(`listening on port`);

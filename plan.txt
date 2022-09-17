@@ -1,5 +1,9 @@
 TODO:
 
+
+ERROR HANDLING TODO:
+> Joi Schema validations
+
 Make a step by step plan to execute
 
 
@@ -8,8 +12,6 @@ THINGS MY APP NEEDS:
 
 > ERROR HANDLING
     - error handle function to wrap routes
-
-> SPLIT INTO routes
 
 > Add Review functionality
 
