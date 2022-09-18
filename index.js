@@ -9,6 +9,7 @@ const app = express();
 
 //import route files
 const skateparkRoute = require('./routes/skateparkRoutes');
+const reviewRoute = require('./routes/reviewRoutes');
 
 app.set("view engine", "ejs");
 //=================Connect Mongoose / MongoDB ======================
@@ -38,6 +39,7 @@ app.get("/", (req, res) => {
 });
 
 app.use('/skateparks', skateparkRoute); //skatepark routes
+app.use('/skateparks', reviewRoute); //review routes
 
 app.all('*', (req, res, next) => {
   throw new ExpressError('Page not found', 404)

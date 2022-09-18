@@ -23,6 +23,12 @@
       <button class="btn btn-danger" id="deletePark">Delete Park</button>
     </form>
 
+    <form action="/skateparks/<%= skatepark._id %>/review">
+      <button class="btn btn-info">New Review</button>
+    </form>
+
+    
+
     <%- include('./partials/footer.ejs') %>
   </body>
 </html>

@@ -1,12 +1,16 @@
 TODO:
 
 
-ERROR HANDLING TODO:
-> Joi Schema validations >> NEEDS TO BE ADDED TO EDIT ROUTE// SEE SPLITTING VIDEO???
 
 Make a step by step plan to execute
 
+Goal: add review functionality
 
+TODO:
+- create mongoose model for reviews +++
+- add review buttons 
+- create add / edit review pages
+- write CRUD logic to interact with db
 
 THINGS MY APP NEEDS:
 
