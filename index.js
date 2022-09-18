@@ -6,12 +6,17 @@ const methodOverride = require('method-override'); // allows for overide of defa
 const ExpressError = require('./utils/ExpressError');
 const session = require('express-session');
 const flash = require('connect-flash');
+const passport = require('passport');
+const localStrategy = require('passport-local');
+const User = require('./models/user');
 
 const app = express();
 
 //import route files
 const skateparkRoute = require('./routes/skateparkRoutes');
 const reviewRoute = require('./routes/reviewRoutes');
+const user = require("./models/user");
+const { serializeUser } = require("passport");
 
 app.set("view engine", "ejs");
 //=================Connect Mongoose / MongoDB ======================
@@ -46,6 +51,13 @@ const sessionConfig = {
 app.use(session(sessionConfig));
 app.use(flash());
 
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new localStrategy(User.authenticate()))
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 app.use((req, res, next) => {
   res.locals.success = req.flash('success');
   res.locals.error = req.flash('error');
@@ -60,6 +72,12 @@ app.get("/", (req, res) => {
 
 app.use('/skateparks', skateparkRoute); //skatepark routes
 app.use('/skateparks', reviewRoute); //review routes
+
+app.get('/fakeuser', async (req, res) => {
+  const user = new User({email: 'someone@gmail.com', username: 'billyBob'});
+  const newUser = await User.register(user, 'what?')
+  res.send(newUser);
+})
 
 app.all('*', (req, res, next) => {
   throw new ExpressError('Page not found', 404)
