@@ -4,18 +4,12 @@ TODO:
 
 Make a step by step plan to execute
 
-Goal: add review functionality
 
 TODO:
-- create mongoose model for reviews +++
-- add review buttons 
-- create add / edit review pages
-- write CRUD logic to interact with db
+- 
 
 THINGS MY APP NEEDS:
 
-> Add Review functionality
-    >>review mongo / mongoose model... how will it be implemented?? relationships with skatepark?? by ID
 
 > STYLES CLEANUP
 

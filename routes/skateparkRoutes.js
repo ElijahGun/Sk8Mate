@@ -3,12 +3,14 @@ const router = express.Router();
 const skatePark = require("../models/skatepark"); //mongoose skatepark model
 const catchAsync = require("../utils/catchAsync"); //Async wrapper function to catch errors
 const { validateSkatepark } = require("../utils/joiSchemas"); //Joi server input validation
+const flash = require('connect-flash');
 
 //all skateparks page
 router.get(
   "/",
   catchAsync(async (req, res) => {
     const skateparks = await skatePark.find({});
+    console.log(skateparks);
     res.render("./skateparks.ejs", { skateparks });
   })
 );
@@ -26,6 +28,7 @@ router.post(
     const { name, location, price, imgUrl } = req.body;
     const sk8park = new skatePark({ name, location, price, imgUrl });
     await sk8park.save();
+    req.flash('success', 'Successfuly added new skatepark!')
     console.log("success");
     res.redirect("/skateparks");
   })
@@ -58,8 +61,12 @@ router.get(
   "/:id",
   catchAsync(async (req, res) => {
     const { id } = req.params;
-    const skatepark = await skatePark.findById(id);
-    res.render("detail.ejs", { skatepark });
+    const skatepark = await skatePark.findById(id).populate('reviews');
+    if (skatepark) {
+      res.render("detail.ejs", { skatepark });
+    }
+    req.flash('error', 'Cannot find that skatepark!');
+    res.redirect('/skateparks');
   })
 );
 
@@ -69,7 +76,7 @@ router.delete(
   catchAsync(async (req, res) => {
     const { id } = req.params;
     await skatePark.findByIdAndDelete(id);
-    console.log("WARNING -DELETED!");
+    req.flash('success', 'Successfuly deleted skatepark')
     res.redirect("/skateparks");
   })
 );
