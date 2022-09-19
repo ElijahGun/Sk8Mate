@@ -13,10 +13,10 @@ const User = require('./models/user');
 const app = express();
 
 //import route files
+const authRoute = require('./routes/authRoutes');
 const skateparkRoute = require('./routes/skateparkRoutes');
 const reviewRoute = require('./routes/reviewRoutes');
 const user = require("./models/user");
-const { serializeUser } = require("passport");
 
 app.set("view engine", "ejs");
 //=================Connect Mongoose / MongoDB ======================
@@ -59,6 +59,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use((req, res, next) => {
+  res.locals.currentUser = req.user;
   res.locals.success = req.flash('success');
   res.locals.error = req.flash('error');
   next();
@@ -70,8 +71,9 @@ app.get("/", (req, res) => {
   res.render('./index.ejs');
 });
 
-app.use('/skateparks', skateparkRoute); //skatepark routes
-app.use('/skateparks', reviewRoute); //review routes
+app.use('/', authRoute);                  // Auth Routes
+app.use('/skateparks', skateparkRoute);  //skatepark routes
+app.use('/skateparks', reviewRoute);     //review routes
 
 app.get('/fakeuser', async (req, res) => {
   const user = new User({email: 'someone@gmail.com', username: 'billyBob'});
@@ -79,9 +81,9 @@ app.get('/fakeuser', async (req, res) => {
   res.send(newUser);
 })
 
-app.all('*', (req, res, next) => {
-  throw new ExpressError('Page not found', 404)
-})
+// app.all('*', (req, res, next) => {
+//   throw new ExpressError('Page not found', 404)
+// })
 
 app.use((err, req, res, next) => {
   console.log(err)

@@ -4,19 +4,19 @@ const skatePark = require("../models/skatepark"); //mongoose skatepark model
 const catchAsync = require("../utils/catchAsync"); //Async wrapper function to catch errors
 const { validateSkatepark } = require("../utils/joiSchemas"); //Joi server input validation
 const flash = require('connect-flash');
+const { isLoggedIn } = require('../middleware');
 
 //all skateparks page
 router.get(
   "/",
   catchAsync(async (req, res) => {
     const skateparks = await skatePark.find({});
-    console.log(skateparks);
     res.render("./skateparks.ejs", { skateparks });
   })
 );
 
 //new skatepark page
-router.get("/new", (req, res) => {
+router.get("/new", isLoggedIn , (req, res) => {
   res.render("./new.ejs");
 });
 
@@ -36,7 +36,7 @@ router.post(
 
 //GET skatepark edit page
 router.get(
-  "/:id/edit",
+  "/:id/edit", isLoggedIn,
   catchAsync(async (req, res, next) => {
     const { id } = req.params;
     const skatepark = await skatePark.findById(id);
