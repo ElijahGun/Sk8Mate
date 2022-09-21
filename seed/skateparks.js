@@ -3,6 +3,7 @@ const skateParkModel = require("../models/skatepark");
 
 const skateParks = [
   {
+    author: "6328bf99dc5dd095212da69a",
     name: "sk8t Land",
     location: "Anaheim, CA",
     price: 0,
@@ -10,12 +11,14 @@ const skateParks = [
       "https://skatethestates.com/wp-content/uploads/2022/02/SK8-Charleston-Skatepark-in-South-Carolina.jpg",
   },
   {
+    author: "6328bf99dc5dd095212da69a",
     name: "Warp Tunnel",
     location: "Miami, FL",
     price: 0,
     imgUrl: "https://p300-americantownscom.netdna-ssl.com/img/article/sc-skate-parks-1.jpg",
   },
   {
+    author: "6328bf99dc5dd095212da69a",
     name: "Crazy Horse",
     location: "Chicago, IL",
     price: 0,

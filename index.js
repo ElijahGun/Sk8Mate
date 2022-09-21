@@ -85,7 +85,7 @@ app.get('/fakeuser', async (req, res) => {
 //   throw new ExpressError('Page not found', 404)
 // })
 
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
   console.log(err)
   const { message = 'Something went wrong', statusCode = 500 } = err;
   res.status(statusCode)
