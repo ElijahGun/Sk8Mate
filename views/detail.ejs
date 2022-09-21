@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <%- include('./partials/head.ejs') %>
+    <link rel="stylesheet" href="/stylesheets/stars.css">
     <title><%= skatepark.name %></title>
   </head>
   <body>
@@ -39,8 +40,10 @@
       <% for (review of skatepark.reviews) { %> 
         <div class="card" style="width: 18rem;">
           <div class="card-body">
-            <h5 class="card-title">Rated: <%= review.rating  %> </h5>
-            <h6 class="card-subtitle mb-2 text-muted">By: <%= review.author.username  %> </h6>
+            <h5 class="card-title mb-2 text-muted"><%= review.author.username  %></h5>
+            <p class="starability-result" data-rating="<%= review.rating %>">
+              Rated: <%= review.rating %>  stars
+            </p>
             <p class="card-text"><%= review.review %> </p>
             <% if (currentUser && review.author.equals(currentUser._id)) {%> 
             <form action="/skateparks/<%= skatepark._id %>/review/<%= review._id %>?_method=DELETE" method="POST">

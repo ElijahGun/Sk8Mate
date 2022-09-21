@@ -33,8 +33,7 @@ db.once("open", function () {
 });
 
 //================== MIDDLE WARE ==================================
-
-app.use(express.static(path.join(__dirname, 'public'))) // make sure public folder accessible even if accessed outside
+app.use(express.static(path.join(__dirname, 'public'))); // make sure public folder accessible even if accessed outside
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 app.use(methodOverride('_method')) // overide default form submission ex: post request to delete
@@ -85,7 +84,7 @@ app.get('/fakeuser', async (req, res) => {
 //   throw new ExpressError('Page not found', 404)
 // })
 
-app.use((err, req, res) => {
+app.use((err, req, res, next) => {
   console.log(err)
   const { message = 'Something went wrong', statusCode = 500 } = err;
   res.status(statusCode)

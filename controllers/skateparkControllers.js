@@ -36,7 +36,7 @@ module.exports.createNewPark = async (req, res) => {
     const { id } = req.params;
     const skatepark = await skatePark.findById(id).populate({path: 'reviews', populate:{path: 'author'}}).populate('author');
     if (skatepark) {
-      res.render("detail.ejs", { skatepark });
+      return res.render("detail.ejs", { skatepark });
     }
     req.flash('error', 'Cannot find that skatepark!');
     res.redirect('/skateparks');
