@@ -13,6 +13,9 @@ const {
   renderSkateParkDetail,
   deletePark,
 } = require("../controllers/skateparkControllers");
+const multer  = require('multer')
+const {storage} = require('../cloudinary');
+const upload = multer({ storage })
 
 //all skateparks page
 router.get("/", catchAsync(renderSkateParks));
@@ -21,13 +24,13 @@ router.get("/", catchAsync(renderSkateParks));
 router
   .route("/new")
   .get(isLoggedIn, renderNewParkPage)
-  .post(isLoggedIn, validateSkatepark, catchAsync(createNewPark));
+  .post(isLoggedIn,  upload.array('image'), validateSkatepark, catchAsync(createNewPark));
 
 //GET skatepark edit page
 router
   .route("/:id/edit")
   .get(isLoggedIn, isAuthor, catchAsync(renderEditPage))
-  .patch(validateSkatepark, isLoggedIn, isAuthor, catchAsync(patchSkatePark));
+  .patch( isLoggedIn, isAuthor, upload.array('image'), validateSkatepark, catchAsync(patchSkatePark));
 
 //skatepark detail page
 router

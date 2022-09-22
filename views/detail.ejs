@@ -13,7 +13,32 @@
       <h1>Park Name: <%= skatepark.name %></h1>
       <h2>Located: <%= skatepark.location %></h2>
       <h2>Cost: <%= skatepark.price %></h2>
-      <img src="<%= skatepark.imgUrl %>" alt="" />
+
+      <div id="skateparkCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <% skatepark.images.forEach((img, i) => {%> 
+          <div class="carousel-item active">
+            <img src="<%= img.url %>" class="d-block w-100" alt="...">
+          </div>
+          <% }) %> 
+
+        </div>
+        <% if(skatepark.images.length > 1) {%> 
+        <button class="carousel-control-prev" type="button" data-bs-target="#skateparkCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#skateparkCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+        <% } %> 
+      </div>
+
+      <% for (img of skatepark.images) {%>
+        <img src="<%= img.url %>" alt="" srcset="">
+        <% } %> 
+
       <h5>Park Uploaded By: <%= skatepark.author.username  %> </h5>
     </main>
 

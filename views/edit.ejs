@@ -11,7 +11,7 @@
     <h2>Edit- <%= skatepark.name  %> -Skatepark</h2>
         <!-- Form to add edit park -->
         <div class="container">
-            <form action="/skateparks/<%= skatepark._id %>/edit?_method=PATCH" class="row g-3 needs-validation" novalidate method="POST">
+            <form action="/skateparks/<%= skatepark._id %>/edit?_method=PATCH" class="row g-3 needs-validation" novalidate method="POST" enctype="multipart/form-data">
                 <div class="d-flex flex-column mb-3">
                     <div class="col-md-4">
                         <label for="validationCustom01" class="form-label">Park Name</label>
@@ -38,11 +38,10 @@
                         </div>
                       </div>
                       <div class="col-md-4">
-                          <label for="validationCustom02" class="form-label">Image Url:</label>
-                          <input value="<%= skatepark.imgUrl %> " name="imgUrl" type="text" class="form-control" id="validationCustom02" value="Image URL Here" required>
-                          <div class="valid-feedback">
-                            Looks good!
-                          </div>
+                        <div class="mb-3">
+                          <label for="images" class="form-label">Add Images:</label>
+                          <input class="form-control" type="file" id="images" multiple name="image">
+                        </div>
                         </div>
                       
                       <div class="col-12">
@@ -59,9 +58,17 @@
                       <div class="col-12">
                         <button class="btn btn-primary" type="submit">Edit Park</button>
                       </div>
+                      <div class="mg-3">
+                        <% skatepark.images.forEach(function(img, i) {%>
+                          <img src="<%=img.thumbnail%>" class="img-thumbnail"  alt="" srcset="">
+                          <div class="form-check-inline">
+                            <input type="checkbox" id="img-<%=i%>" name="deleteImages[]" value="<%=img.filename%>">
+                          </div>
+                          <label for="img-<%=i%>">Delete?</label>
+                        <% }) %> 
+                      </div>
                     </form>
                 </div>
-    <h1>Edit SkatePark</h1>
 
     <!-- script required for client side validation  -->
     <%- include('../public/javascripts/validateform.ejs')  %> 

@@ -6,8 +6,11 @@ module.exports.validateSkatepark = (req, res, next) => {
     name: Joi.string().required(),
     location: Joi.string().required(),
     price: Joi.number().required().min(0),
-    imgUrl: Joi.string().required(),
-  });
+    //images: Joi.string().required(),
+    deleteImages: Joi.array()
+  })
+
+
   const validation = skateParkSchema.validate(req.body);
   if (validation.error) {
     const msg = validation.error.details.map((el) => el.message).join(",");

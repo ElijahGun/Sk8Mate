@@ -7,23 +7,30 @@ const skateParks = [
     name: "sk8t Land",
     location: "Anaheim, CA",
     price: 0,
-    imgUrl:
-      "https://skatethestates.com/wp-content/uploads/2022/02/SK8-Charleston-Skatepark-in-South-Carolina.jpg",
+    images:[{
+      url:  'https://res.cloudinary.com/do8zqbtcx/image/upload/v1663802030/Sk8Mate/or5rxib9jqbwwk9p6crw.jpg',
+      filename: 'Sk8Mate/or5rxib9jqbwwk9p6crw'
+    }]
   },
   {
     author: "6328bf99dc5dd095212da69a",
     name: "Warp Tunnel",
     location: "Miami, FL",
     price: 0,
-    imgUrl: "https://p300-americantownscom.netdna-ssl.com/img/article/sc-skate-parks-1.jpg",
+    images:[{
+      url:  'https://res.cloudinary.com/do8zqbtcx/image/upload/v1663802030/Sk8Mate/or5rxib9jqbwwk9p6crw.jpg',
+      filename: 'Sk8Mate/or5rxib9jqbwwk9p6crw'
+    }],
   },
   {
     author: "6328bf99dc5dd095212da69a",
     name: "Crazy Horse",
     location: "Chicago, IL",
     price: 0,
-    imgUrl:
-      "https://images.squarespace-cdn.com/content/v1/5925b3a4725e25314bce8d8a/1534389328329-9V140PTVV4WRLJK7GML3/0727181042c_HDR+2.jpg",
+    images:[{
+      url: 'https://res.cloudinary.com/do8zqbtcx/image/upload/v1663802030/Sk8Mate/nvhhj1tiacatzcyiggxg.jpg',
+      filename: 'Sk8Mate/nvhhj1tiacatzcyiggxg',  
+    }]
   },
 ];
 

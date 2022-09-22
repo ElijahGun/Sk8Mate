@@ -13,4 +13,4 @@ THINGS MY APP NEEDS:
 
 > STYLES CLEANUP
 
-> AUTHENTICATION (cookies, sessions, authorizations, etc.)
+> Prevent User from deleting LAST image OR have defualt image placed if no image..

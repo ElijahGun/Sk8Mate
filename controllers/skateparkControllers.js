@@ -1,4 +1,8 @@
 const skatePark = require('../models/skatepark');
+const cloudinary = require("cloudinary").v2;
+const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
+const mapBoxToken = process.env.MAPBOX_TOKEN;
+const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
 
 module.exports.renderSkateParks = async (req, res) => {
     const skateparks = await skatePark.find({});
@@ -10,8 +14,9 @@ module.exports.renderNewParkPage = (req, res) => {
   }
 
 module.exports.createNewPark = async (req, res) => {
-    const { name, location, price, imgUrl } = req.body;
-    const sk8park = new skatePark({ name, location, price, imgUrl });
+    const { name, location, price, image  } = req.body;
+    const sk8park = new skatePark({ name, location, price, image });
+    sk8park.images = req.files.map(f => ({url: f.path, filename: f.filename}))
     sk8park.author = req.user._id;
     await sk8park.save();
     req.flash('success', 'Successfuly added new skatepark!')
@@ -27,8 +32,19 @@ module.exports.createNewPark = async (req, res) => {
 
   module.exports.patchSkatePark = async (req, res) => {
     const { id } = req.params;
-    const { name, location, price, imgUrl } = req.body;
-    await skatePark.findByIdAndUpdate(id, { name, location, imgUrl, price });
+    console.log('req.body ======>', req.body);
+    const { name, location, price } = req.body;
+    const sk8park = await skatePark.findByIdAndUpdate(id, { name, location, price });
+    const imgs = req.files.map(f => ({url: f.path, filename: f.filename}))
+    sk8park.images.push(...imgs)
+    await sk8park.save();
+    if (req.body.deleteImages) {
+      for (let filename of req.body.deleteImages) {
+        await cloudinary.uploader.destroy(filename);
+      }
+      await sk8park.updateOne({ $pull: { images: { filename: { $in: req.body.deleteImages } } } })
+  }
+    req.flash('success', 'Successfuly Updated Skatepark!')
     res.redirect(`/skateparks/${id}`);
   }
 
