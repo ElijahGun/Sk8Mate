@@ -3,9 +3,19 @@
   <head>
     <%- include('./partials/head.ejs') %>
     <link rel="stylesheet" href="/stylesheets/stars.css">
+
+
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
+
+
+
     <title><%= skatepark.name %></title>
   </head>
   <body>
+
+
+
     <%- include('./partials/navbar.ejs') %>
 
     <main class="container">
@@ -13,6 +23,8 @@
       <h1>Park Name: <%= skatepark.name %></h1>
       <h2>Located: <%= skatepark.location %></h2>
       <h2>Cost: <%= skatepark.price %></h2>
+
+      <div id='map' style='width: 400px; height: 300px;'></div>
 
       <div id="skateparkCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
@@ -83,3 +95,9 @@
     <%- include('./partials/footer.ejs') %>
   </body>
 </html>
+
+<script> 
+  const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
+  let geoPark = '<%-JSON.stringify(skatepark)%>'; 
+</script>
+<script src="/javascripts/displayMap.js"></script>

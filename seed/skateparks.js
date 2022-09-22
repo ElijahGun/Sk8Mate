@@ -6,6 +6,10 @@ const skateParks = [
     author: "6328bf99dc5dd095212da69a",
     name: "sk8t Land",
     location: "Anaheim, CA",
+    geometry: {
+      type: "Point",
+      coordinates: [-113.1331, 47.0202]
+  },
     price: 0,
     images:[{
       url:  'https://res.cloudinary.com/do8zqbtcx/image/upload/v1663802030/Sk8Mate/or5rxib9jqbwwk9p6crw.jpg',
@@ -16,6 +20,10 @@ const skateParks = [
     author: "6328bf99dc5dd095212da69a",
     name: "Warp Tunnel",
     location: "Miami, FL",
+    geometry: {
+      type: "Point",
+      coordinates: [-113.1331, 47.0202]
+  },
     price: 0,
     images:[{
       url:  'https://res.cloudinary.com/do8zqbtcx/image/upload/v1663802030/Sk8Mate/or5rxib9jqbwwk9p6crw.jpg',
@@ -26,6 +34,10 @@ const skateParks = [
     author: "6328bf99dc5dd095212da69a",
     name: "Crazy Horse",
     location: "Chicago, IL",
+    geometry: {
+      type: "Point",
+      coordinates: [-113.1331, 47.0202]
+  },
     price: 0,
     images:[{
       url: 'https://res.cloudinary.com/do8zqbtcx/image/upload/v1663802030/Sk8Mate/nvhhj1tiacatzcyiggxg.jpg',

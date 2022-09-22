@@ -14,13 +14,18 @@ module.exports.renderNewParkPage = (req, res) => {
   }
 
 module.exports.createNewPark = async (req, res) => {
+  const geoData = await geocoder.forwardGeocode({
+    query: req.body.location,
+    limit: 1
+  }).send()
     const { name, location, price, image  } = req.body;
     const sk8park = new skatePark({ name, location, price, image });
+    sk8park.geometry = geoData.body.features[0].geometry
     sk8park.images = req.files.map(f => ({url: f.path, filename: f.filename}))
     sk8park.author = req.user._id;
     await sk8park.save();
     req.flash('success', 'Successfuly added new skatepark!')
-    console.log("success");
+    console.log(sk8park);
     res.redirect("/skateparks");
   }
 
