@@ -2,11 +2,31 @@
 <html lang="en">
 <head>
     <%- include('./partials/head.ejs')  %> 
-    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/styles.css">
+    <title>>Sk8Mate<</title>
 </head>
 <body>
     <%- include('./partials/navbar.ejs')  %>
-    <h1>Homepage</h1> 
+
+    <div class="container d-flex">
+        <div class="container main">
+            <h1>>Sk8Mate<</h1> 
+            <br> <br>
+            <h5>Welcome!</h5>
+            <p>The place where you can search for skateparks across the USA! <br> Go ahead and click below to explore parks or <span><a href="/register">Login</a></span> or <span><a href="/login">Register</a></span> to add new parks and reviews!</p> <br>
+            <a href="/skateparks"><button type="button" class="btn btn-light">-Explore-</button></a>
+            <br>
+            
+        </div>
+    
+        <div class="container position-absolute bottom-0 d-flex justify-content-around btm-text">
+            <p>Photo by <a href="https://unsplash.com/@olegixanovpht?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Oleg Ivanov</a> on <a href="https://unsplash.com/s/photos/skatepark?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+            </p>
+            <p>2022 Sk8Mate &copy;</p>
+        </div>
+    
+    </div>
+
     <%- include('./partials/footer.ejs')  %> 
 </body>
 </html>

@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 const Review = require('./review');
 const { Schema } = mongoose;
 
+const opts = { toJSON: {virtuals: true}};
+
 const ImageSchema = new Schema({
     url: String,
     filename: String
@@ -11,11 +13,13 @@ ImageSchema.virtual('thumbnail').get(function () {
     return this.url.replace('/upload', '/upload/w_200');
 });
 
+
 const SkateParkSchema = new Schema({
     name: {
         type: String,
         required: true
     },
+    description: String,
     geometry: {
         type: {
           type: String, 
@@ -47,7 +51,13 @@ const SkateParkSchema = new Schema({
             ref: 'Review'
         }
     ]
-})
+}, opts);
+
+SkateParkSchema.virtual('properties.popupText').get(function () {
+    return 
+    `<a href="/skateparks/${this._id}">${this.name}</a>
+    <p>${this.description}.subs</p>`;
+});
 
 SkateParkSchema.post('findOneAndDelete', async function (doc) {
     if (doc) {

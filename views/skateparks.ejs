@@ -36,7 +36,9 @@
 
 <script> 
   const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
+  const skateparks = {features: <%-JSON.stringify(skateparks)%>};
 </script>
+
 <%- include('./partials/footer.ejs')  %> 
 <script src="/javascripts/clusterMap.js"></script>
 </body>

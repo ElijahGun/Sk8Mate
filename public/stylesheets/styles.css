@@ -1,0 +1,26 @@
+body{
+    height: 100vh;
+    background:  linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9) ), url('../assets/oleg-ivanov-Wj-GUhugkxY-unsplash.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.main {
+
+    text-align: center;
+    margin-top: 5rem;
+    color: azure;
+}
+
+a {
+    color:white;
+}
+
+.trademark {
+    padding-top: 2rem;
+    font-size: x-small;
+}
+
+.btm-text {
+    color: #b3b3b3;
+}
