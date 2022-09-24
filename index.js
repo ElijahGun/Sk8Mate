@@ -9,12 +9,14 @@ const path = require('path');
 const methodOverride = require('method-override'); // allows for overide of default form method
 const ExpressError = require('./utils/ExpressError');
 const session = require('express-session');
+const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
 const passport = require('passport');
 const localStrategy = require('passport-local');
 const User = require('./models/user');
 const mongoSanitize = require('express-mongo-sanitize');
 const helmet = require('helmet');
+const dbURL = process.env.DB_URL || "mongodb://localhost:27017/Sk8Mate";
 
 
 const app = express();
@@ -28,7 +30,8 @@ const user = require("./models/user");
 app.set("view engine", "ejs");
 //=================Connect Mongoose / MongoDB ======================
 // make mongo connection
-mongoose.connect("mongodb://localhost:27017/Sk8Mate");
+//"mongodb://localhost:27017/Sk8Mate"
+mongoose.connect(dbURL);
 
 // get reference to database
 var db = mongoose.connection;
@@ -44,8 +47,24 @@ app.use(express.static(path.join(__dirname, 'public'))); // make sure public fol
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 app.use(methodOverride('_method')) // overide default form submission ex: post request to delete
+
+const secret = process.env.SECRET || 'notarealsecretdev'
+
+const store = MongoStore.create({
+  mongoUrl: dbURL,
+  touchAfter: 24 * 60 * 60,
+  crypto: {
+      secret
+  }
+});
+
+store.on("error", function(e) {
+  console.log('Session Store Error!', e)
+})
+
 const sessionConfig = {
-  secret: 'notarealsecret',
+  store,
+  secret,
   resave: false,
   saveUninitialized: true,
   cookie: {
