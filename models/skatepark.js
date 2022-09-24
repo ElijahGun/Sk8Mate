@@ -54,9 +54,7 @@ const SkateParkSchema = new Schema({
 }, opts);
 
 SkateParkSchema.virtual('properties.popupText').get(function () {
-    return 
-    `<a href="/skateparks/${this._id}">${this.name}</a>
-    <p>${this.description}.subs</p>`;
+    return `<a href="/skateparks/${this._id}">${this.name}</a> <p>${this.description}.subs</p>`;
 });
 
 SkateParkSchema.post('findOneAndDelete', async function (doc) {

@@ -1,2 +1,34 @@
 TODO:
 
+PRE-DEPLOYMENT CHECKLIST:
+
+>> Navbar -> login & register links should be on right side of page
+
+>> Make sure that if someone deletes all pics the app wont crash
+    options:
+        -> make sure it will only delete if there is more than 1 left,
+        -> If all is deleted, populate with default image
+        -> other ideas
+
+>> Seed with about 50 parks (not like 1000!) (optional scrollbar)
+
+>> restyle Login & Register Pages
+
+>> restyle detail page
+    -> optional -> make add review on same page... (maybe good idea)
+
+>> skateparks page 
+    -> parks display should be more intuitive (not just a straight list!!!)
+
+============================THOUGHTS===============================
+-> I suck at CSS :( 
+
+Options to finish this project:
+-> Go study CSS and or bootstrap to make it work
+-> Just copy Colt
+-> Try yourself and when stuck, peek at colt's code
+
+=======================DECISION=======================
+-> DO NOT COPY!!! - that is not how learning happens!
+-> Try to understand how this works and go implement it.
+-> 
